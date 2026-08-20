@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Manual Diesel Gas DGNC65</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#ffffff;
+    color:#111;
+}
+
+.container{
+    max-width:1050px;
+    margin:0 auto;
+    padding:30px 25px;
+}
+
+h1{
+    color:#cc0000;
+    font-size:38px;
+    margin-bottom:5px;
+}
+
+h2{
+    color:#cc0000;
+    margin-top:40px;
+    border-bottom:1px solid #bbb;
+    padding-bottom:8px;
+}
+
+h3{
+    margin-top:25px;
+}
+
+.subtitle{
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:25px;
+}
+
+.download{
+    display:inline-block;
+    padding:14px 25px;
+    background:#eeeeee;
+    border:1px solid #999;
+    color:#000;
+    text-decoration:none;
+    font-size:18px;
+    margin:10px 0 25px 0;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto;
+    border:1px solid #ccc;
+}
+
+.caption{
+    text-align:center;
+    font-size:14px;
+    font-style:italic;
+    color:#555;
+    margin-top:-10px;
+    margin-bottom:25px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0;
+}
+
+th{
+    background:#cc0000;
+    color:white;
+    padding:10px;
+    text-align:left;
+}
+
+td{
+    border:1px solid #bbb;
+    padding:10px;
+}
+
+.note{
+    background:#f4f4f4;
+    border-left:5px solid #cc0000;
+    padding:15px;
+    margin:20px 0;
+}
+
+.back{
+    margin-top:40px;
+    padding-top:20px;
+    border-top:1px solid #aaa;
+}
+
+.back a{
+    color:#0066cc;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>DIESEL GAS - DGNC65</h1>
+
+<div class="subtitle">
+Sistema electrónico de control Diesel Dual Fuel
+</div>
+
+<a class="download" href="../Manual_DieselGas_DGNC65.pdf">
+Descargar manual completo en PDF
+</a>
+
+
+<h2>1. Descripción general</h2>
+
+<p>
+DGNC65 es una centralita electrónica diseñada para sistemas Diesel Dual Fuel.
+Permite controlar la cantidad de combustible gaseoso suministrado al motor
+en función de la carga y de diferentes parámetros de funcionamiento.
+</p>
+
+<p>
+La configuración se realiza mediante el software Diesel Dual Fuel para Windows.
+Desde el programa es posible modificar el mapa de inyección, visualizar sensores
+en tiempo real, establecer límites de funcionamiento y configurar los canales
+de emulación.
+</p>
+
+
+<h2>2. Funciones principales</h2>
+
+<ul>
+<li>Mapa de inyección de gas de 30 puntos.</li>
+<li>Referencia de carga mediante MAP o TPS.</li>
+<li>Control mínimo de TPS.</li>
+<li>Control mínimo de RPM.</li>
+<li>Control de temperatura de gas.</li>
+<li>Control de temperatura del refrigerante.</li>
+<li>Control mínimo de presión de gas.</li>
+<li>Protección por temperatura máxima EGT.</li>
+<li>Lectura de nivel de combustible gaseoso.</li>
+<li>Contador de horas de funcionamiento a gas.</li>
+<li>Tres canales independientes de emulación.</li>
+<li>Lectura y escritura de configuración desde la ECU.</li>
+<li>Guardado y recuperación de configuraciones.</li>
+<li>Función de borrado de fallos.</li>
+</ul>
+
+
+<h2>3. Software Diesel Dual Fuel</h2>
+
+<img src="../principal.JPG" alt="Pantalla principal Diesel Gas">
+
+<div class="caption">
+Pantalla principal del software Diesel Dual Fuel V8.5
+</div>
+
+<p>
+En el sector izquierdo se encuentra la tabla de programación MAP / % Gas
+y su correspondiente representación gráfica.
+</p>
+
+<p>
+La línea vertical indica la posición actual dentro del mapa y permite visualizar
+la zona de funcionamiento del motor.
+</p>
+
+<p>
+En la sección de límites se muestran tanto los valores configurados como
+los valores actuales medidos por la ECU.
+</p>
+
+
+<h2>4. Variables de funcionamiento</h2>
+
+<table>
+
+<tr>
+<th>Variable</th>
+<th>Función</th>
+</tr>
+
+<tr>
+<td>TPS</td>
+<td>Posición del acelerador y posible referencia de carga.</td>
+</tr>
+
+<tr>
+<td>Rev</td>
+<td>Régimen del motor en RPM.</td>
+</tr>
+
+<tr>
+<td>GT</td>
+<td>Temperatura del gas / reductor.</td>
+</tr>
+
+<tr>
+<td>WT</td>
+<td>Temperatura del refrigerante del motor.</td>
+</tr>
+
+<tr>
+<td>PG</td>
+<td>Presión del combustible gaseoso.</td>
+</tr>
+
+<tr>
+<td>EGT</td>
+<td>Temperatura de gases de escape.</td>
+</tr>
+
+<tr>
+<td>Hs</td>
+<td>Horas acumuladas de funcionamiento a gas.</td>
+</tr>
+
+</table>
+
+
+<h2>5. Mapa de inyección</h2>
+
+<p>
+El mapa permite definir el porcentaje de combustible gaseoso aplicado
+en función de la carga del motor.
+</p>
+
+<p>
+La referencia puede seleccionarse entre MAP o TPS.
+Los valores intermedios son calculados mediante interpolación entre los
+diferentes puntos de la tabla.
+</p>
+
+<div class="note">
+Los valores mostrados en las capturas son ejemplos de calibración.
+Cada motor requiere una configuración específica.
+</div>
+
+
+<h2>6. Emuladores</h2>
+
+<img src="../Emuladores.JPG" alt="Configuración de emuladores Diesel Gas">
+
+<div class="caption">
+Pantalla de configuración de los tres canales de emulación
+</div>
+
+<p>
+DGNC65 dispone de tres canales independientes de emulación.
+Cada canal utiliza una tabla de 30 puntos y una representación gráfica.
+</p>
+
+<p>
+Los valores pueden modificarse manualmente o mediante interpolación.
+También es posible utilizar las funciones de zoom para trabajar con mayor
+precisión sobre una determinada zona de la tabla.
+</p>
+
+<p>
+Las tablas pueden:
+</p>
+
+<ul>
+<li>Leerse desde la ECU.</li>
+<li>Enviarse a la ECU.</li>
+<li>Guardarse en archivo.</li>
+<li>Recuperarse desde un archivo previamente guardado.</li>
+</ul>
+
+<p>
+Los emuladores pueden utilizarse para modificar o reproducir señales
+analógicas del vehículo cuando la instalación lo requiere.
+</p>
+
+
+<h2>7. Sensores de nivel</h2>
+
+<p>
+El sistema permite seleccionar diferentes tipos de sensores de nivel.
+Entre las configuraciones contempladas se encuentran sensores resistivos
+0-90 ohm y sensores AEB806.
+</p>
+
+
+<h2>8. Operación básica</h2>
+
+<ol>
+<li>Conectar la ECU al PC.</li>
+<li>Abrir el software Diesel Dual Fuel.</li>
+<li>Leer la configuración almacenada en la ECU.</li>
+<li>Seleccionar el tipo de sensor de nivel.</li>
+<li>Seleccionar referencia MAP o TPS.</li>
+<li>Configurar los límites de funcionamiento.</li>
+<li>Ajustar progresivamente el mapa de gas.</li>
+<li>Configurar los emuladores si la instalación los utiliza.</li>
+<li>Enviar la configuración a la ECU.</li>
+<li>Guardar una copia de seguridad de la configuración.</li>
+</ol>
+
+
+<h2>9. Esquema general de conexión</h2>
+
+<img src="../esquema.jpg" alt="Esquema eléctrico Diesel Gas DGNC65">
+
+<div class="caption">
+Esquema general de instalación DGNC65
+</div>
+
+<p>
+El esquema muestra las conexiones principales de la centralita,
+incluyendo alimentación, sensores, entrada de RPM, inyectores,
+electroválvulas y canales de emulación.
+</p>
+
+
+<h2>10. Referencia rápida de conexiones</h2>
+
+<table>
+
+<tr>
+<th>Conexión</th>
+<th>Descripción</th>
+</tr>
+
+<tr>
+<td>Batería</td>
+<td>Alimentación principal 12 a 24 V con fusible de protección.</td>
+</tr>
+
+<tr>
+<td>Ignición</td>
+<td>Entrada de positivo bajo llave.</td>
+</tr>
+
+<tr>
+<td>RPM</td>
+<td>Entrada para captación inductiva de régimen.</td>
+</tr>
+
+<tr>
+<td>TPS</td>
+<td>Entrada analógica de posición de acelerador.</td>
+</tr>
+
+<tr>
+<td>MAP</td>
+<td>Señal utilizada como referencia de carga.</td>
+</tr>
+
+<tr>
+<td>PG</td>
+<td>Sensor de presión de gas.</td>
+</tr>
+
+<tr>
+<td>GT</td>
+<td>Sensor de temperatura del gas.</td>
+</tr>
+
+<tr>
+<td>WT</td>
+<td>Temperatura del refrigerante.</td>
+</tr>
+
+<tr>
+<td>EGT</td>
+<td>Sensor de temperatura de gases de escape.</td>
+</tr>
+
+<tr>
+<td>Emulador 1</td>
+<td>Entrada gris / salida gris-negro.</td>
+</tr>
+
+<tr>
+<td>Emulador 2</td>
+<td>Entrada amarilla / salida amarilla-negro.</td>
+</tr>
+
+<tr>
+<td>Emulador 3</td>
+<td>Entrada púrpura / salida púrpura-negro.</td>
+</tr>
+
+</table>
+
+
+<h2>11. Seguridad</h2>
+
+<p>
+La instalación y calibración del sistema debe ser realizada por personal
+con conocimientos de sistemas Diesel Dual Fuel.
+</p>
+
+<p>
+Antes de habilitar la inyección de gas deben comprobarse las alimentaciones,
+masas, fusibles, sensores, presión del sistema y estanqueidad de la instalación.
+</p>
+
+<div class="note">
+Durante la calibración debe controlarse especialmente la temperatura EGT
+y el comportamiento general del motor.
+</div>
+
+
+<div class="back">
+
+<a href="../index.html">
+← Volver a Diesel Gas
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
